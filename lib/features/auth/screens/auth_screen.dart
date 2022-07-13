@@ -1,5 +1,6 @@
 import 'package:amazon_clone_app/common/common.dart';
 import 'package:amazon_clone_app/constants/constants.dart';
+import 'package:amazon_clone_app/features/features.dart';
 import 'package:flutter/material.dart';
 
 enum Auth {
@@ -23,6 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final AuthService authService = AuthService();
 
   @override
   void dispose() {
@@ -30,6 +32,23 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordController.dispose();
     _nameController.dispose();
     super.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+      name: _nameController.text,
+    );
+  }
+
+  void signInUser() {
+    authService.signInUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 
   @override
@@ -90,14 +109,15 @@ class _AuthScreenState extends State<AuthScreen> {
                         CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
+                          isPassword: true,
                         ),
                         const SizedBox(height: 10),
                         CustomButton(
                           text: 'Sign Up',
                           onTap: () {
-                            // if (_signUpFormKey.currentState.validate()) {
-                            //   print('Sign Up');
-                            // }
+                            if (_signUpFormKey.currentState!.validate()) {
+                              signUpUser();
+                            }
                           },
                         ),
                       ],
@@ -139,14 +159,16 @@ class _AuthScreenState extends State<AuthScreen> {
                         CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
+                          isPassword: true,
                         ),
                         const SizedBox(height: 10),
                         CustomButton(
                           text: 'Sign In',
                           onTap: () {
-                            // if (_signUpFormKey.currentState.validate()) {
-                            //   print('Sign Up');
-                            // }
+                            if (_signInFormKey.currentState!.validate()) {
+                              signUpUser();
+                            }
+                            debugPrint('Sign In Success');
                           },
                         ),
                       ],
