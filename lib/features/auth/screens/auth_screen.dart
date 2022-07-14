@@ -1,4 +1,4 @@
-import 'package:amazon_clone_app/common/common.dart';
+import 'package:amazon_clone_app/common/widgets/widgets.dart';
 import 'package:amazon_clone_app/constants/constants.dart';
 import 'package:amazon_clone_app/features/features.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +20,10 @@ class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
-
+  final AuthService authService = const AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-  final AuthService authService = AuthService();
 
   @override
   void dispose() {
@@ -166,9 +165,9 @@ class _AuthScreenState extends State<AuthScreen> {
                           text: 'Sign In',
                           onTap: () {
                             if (_signInFormKey.currentState!.validate()) {
-                              signUpUser();
+                              signInUser();
                             }
-                            debugPrint('Sign In Success');
+                            debugPrint('Tapped');
                           },
                         ),
                       ],

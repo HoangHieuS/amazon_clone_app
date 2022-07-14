@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-void showSnackBar(BuildContext context, String text) {
-  ScaffoldMessenger.of(context).showSnackBar(
+class SnackBarUtil {
+static GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+static void showSnackBar( String text) {
+  scaffoldMessengerKey.currentState?.showSnackBar(
     SnackBar(
       content: Text(text),
     ),
   );
+}
 }
