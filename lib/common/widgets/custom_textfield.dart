@@ -4,11 +4,12 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool isPassword;
+  final int maxLines;
   const CustomTextField({
     Key? key,
     required this.controller,
     required this.hintText,
-    this.isPassword = false,
+    this.isPassword = false,  this.maxLines =1,
   }) : super(key: key);
 
   @override
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
         }
         return null;
       },
+      maxLines: maxLines,
     );
   }
 }
