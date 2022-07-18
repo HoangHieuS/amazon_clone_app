@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:amazon_clone_app/features/admin/admin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -77,7 +78,8 @@ class AuthService {
           provider.setUser(res.body);
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           navigator.pushNamedAndRemoveUntil(
-            BottomBar.routeName,
+            provider.user.type == 'user' ? 
+            BottomBar.routeName : AdminScreen.routeName,
             (route) => false,
           );
         },

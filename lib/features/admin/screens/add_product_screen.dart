@@ -6,6 +6,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
+import '../../features.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
@@ -16,21 +17,23 @@ class AddProductScreen extends StatefulWidget {
 }
 
 class _AddProductScreenState extends State<AddProductScreen> {
-  final TextEditingController _productNameController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
-  final TextEditingController _quantityController = TextEditingController();
+  final TextEditingController productNameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController quantityController = TextEditingController();
+  final AdminServices adminServices = AdminServices();
 
   String category = 'Mobiles';
   List<File> images = [];
+  final _addProductKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     super.dispose();
-    _productNameController.dispose();
-    _descriptionController.dispose();
-    _priceController.dispose();
-    _quantityController.dispose();
+    productNameController.dispose();
+    descriptionController.dispose();
+    priceController.dispose();
+    quantityController.dispose();
   }
 
   List<String> productCategories = [
@@ -40,6 +43,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Books',
     'Fashion',
   ];
+
+  void sellProduct() {
+    if (_addProductKey.currentState!.validate() && images.isNotEmpty) {
+      adminServices.sellProduct(
+        context: context,
+        name: productNameController.text,
+        description: descriptionController.text,
+        price: double.parse(priceController.text),
+        quantity: double.parse(quantityController.text),
+        category: category,
+        images: images,
+      );
+    }
+  }
 
   void selectImages() async {
     var res = await pickImages();
@@ -68,6 +85,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: _addProductKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -113,7 +131,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                 ),
                                 const SizedBox(height: 15),
                                 Text(
-                                  'Select PRoduct Images',
+                                  'Select Product Images',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.grey.shade400,
@@ -126,23 +144,23 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       ),
                 const SizedBox(height: 30),
                 CustomTextField(
-                  controller: _productNameController,
+                  controller: productNameController,
                   hintText: 'Product Name',
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
-                  controller: _descriptionController,
+                  controller: descriptionController,
                   hintText: 'Description',
                   maxLines: 7,
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
-                  controller: _priceController,
+                  controller: priceController,
                   hintText: 'Price',
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
-                  controller: _quantityController,
+                  controller: quantityController,
                   hintText: 'Quantity',
                 ),
                 const SizedBox(height: 10),
@@ -169,7 +187,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 const SizedBox(height: 10),
                 CustomButton(
                   text: 'Sell',
-                  onTap: () {},
+                  onTap: sellProduct,
                 ),
               ],
             ),

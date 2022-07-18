@@ -22,6 +22,7 @@ class ImageSlider extends StatelessWidget {
       options: CarouselOptions(
         viewportFraction: 1,
         height: 200,
+        autoPlay: true,
       ),
     );
   }
