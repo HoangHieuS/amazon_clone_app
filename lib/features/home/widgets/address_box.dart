@@ -34,7 +34,7 @@ class AddressBox extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Text(
-                'Delevery to ${user.name} - ${user.address}',
+                'Delivery to ${user.name} - ${user.address}',
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),

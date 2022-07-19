@@ -1,22 +1,48 @@
+import 'package:amazon_clone_app/features/features.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/widgets/widgets.dart';
 import '../../../constants/constants.dart';
-import '../../features.dart';
+import '../../../models/models.dart';
 
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home';
-  const HomeScreen({Key? key}) : super(key: key);
+class SearchScreen extends StatefulWidget {
+  static const String routeName = '/search-screen';
+  final String searchQuery;
+  const SearchScreen({
+    Key? key,
+    required this.searchQuery,
+  }) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SearchScreenState extends State<SearchScreen> {
+  List<ProductModel>? products;
+  final SearchService searchService = SearchService();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSearchedProduct();
+  }
+
+  fetchSearchedProduct() async {
+    products = await searchService.fetchSearchProduct(
+      context: context,
+      searchQuery: widget.searchQuery,
+    );
+    setState(() {});
+  }
 
   void navigateToSearchScreen(String query) {
-    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query,);
+    Navigator.pushNamed(
+      context,
+      SearchScreen.routeName,
+      arguments: query,
+    );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,18 +116,31 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            AddressBox(),
-            SizedBox(height: 10),
-            TopCategories(),
-            SizedBox(height: 10),
-            ImageSlider(),
-            DealOfDay(),
-          ],
-        ),
-      ),
+      body: products == null
+          ? const Loader()
+          : Column(
+              children: [
+                const AddressBox(),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: products!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ProductDetailScreen.routeName,
+                            arguments: products![index],
+                          );
+                        },
+                        child: SearchedProduct(product: products![index]),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }
