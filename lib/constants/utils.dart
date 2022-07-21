@@ -8,7 +8,7 @@ class SnackBarUtil {
       GlobalKey<ScaffoldMessengerState>();
 
   static void showSnackBar(String text) {
-    scaffoldMessengerKey.currentState?.showSnackBar(
+    scaffoldMessengerKey.currentState!.showSnackBar(
       SnackBar(
         content: Text(text),
       ),
