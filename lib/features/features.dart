@@ -4,3 +4,4 @@ export 'account/account.dart';
 export 'admin/admin.dart';
 export 'search/search.dart';
 export 'product_details/product_details.dart';
+export 'cart/cart.dart';
