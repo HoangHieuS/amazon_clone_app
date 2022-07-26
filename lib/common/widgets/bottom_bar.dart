@@ -1,5 +1,4 @@
 import 'package:amazon_clone_app/constants/constants.dart';
-import 'package:amazon_clone_app/features/cart/cart.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
