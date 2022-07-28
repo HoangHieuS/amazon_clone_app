@@ -35,7 +35,7 @@ class CartServices {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 

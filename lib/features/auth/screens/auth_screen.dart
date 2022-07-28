@@ -52,6 +52,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundColor,
       body: SafeArea(
@@ -60,11 +61,12 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Welcome',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+                child: Image.network(
+                  GlobalVariables.amazonLogo,
+                  height: size.height * 0.10,
                 ),
               ),
               const SizedBox(height: 10),

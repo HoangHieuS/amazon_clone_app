@@ -55,12 +55,12 @@ class AdminServices {
         response: res,
         context: context,
         onSuccess: () {
-          SnackBarUtil.showSnackBar('Product Added Successfully!');
+          showSnackBar(context, 'Product Added Successfully!');
           Navigator.pop(context);
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -90,7 +90,7 @@ class AdminServices {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
     return productList;
   }
@@ -122,7 +122,7 @@ class AdminServices {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 }

@@ -37,7 +37,7 @@ class ProductDetailService {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -67,7 +67,7 @@ class ProductDetailService {
         onSuccess: () {},
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 }

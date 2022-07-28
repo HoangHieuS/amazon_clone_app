@@ -43,13 +43,13 @@ class AuthService {
         response: res,
         context: context,
         onSuccess: () {
-          SnackBarUtil.showSnackBar(     
+          showSnackBar(context,     
             'Account created! Login with the same credentials!',
           );
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar( e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -86,7 +86,7 @@ class AuthService {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar( e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -124,7 +124,7 @@ class AuthService {
         userProvider.setUser(userRes.body);  
       }
     } catch (e) {
-      SnackBarUtil.showSnackBar( e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 }

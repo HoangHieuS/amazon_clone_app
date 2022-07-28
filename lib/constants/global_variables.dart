@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://192.168.1.6:3000'; 
+String uri = 'http://192.168.1.3:3000';
 
 class GlobalVariables {
   // COLORS
@@ -18,7 +18,10 @@ class GlobalVariables {
   static var selectedNavBarColor = Colors.cyan[800]!;
   static const unselectedNavBarColor = Colors.black87;
 
-   // STATIC IMAGES
+  // STATIC IMAGES
+  static const String amazonLogo =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png";
+
   static const List<String> carouselImages = [
     'https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37847648_Accessories_savingdays_Jan22_Cat_PC_1500.jpg',
     'https://images-eu.ssl-images-amazon.com/images/G/31/img2021/Vday/bwl/English.jpg',
@@ -29,24 +32,54 @@ class GlobalVariables {
 
   static const List<Map<String, String>> categoryImages = [
     {
+      'title': 'Prime',
+      'image': 'assets/images/prime.jpeg',
+    },
+    {
       'title': 'Mobiles',
       'image': 'assets/images/mobiles.jpeg',
     },
     {
-      'title': 'Essentials',
-      'image': 'assets/images/essentials.jpeg',
+      'title': 'Fashion',
+      'image': 'assets/images/fashion.jpeg',
+    },
+    {
+      'title': 'Electronics',
+      'image': 'assets/images/electronics.jpeg',
+    },
+    {
+      'title': 'Home',
+      'image': 'assets/images/home.jpeg',
+    },
+    {
+      'title': 'Fresh',
+      'image': 'assets/images/fresh.jpeg',
     },
     {
       'title': 'Appliances',
       'image': 'assets/images/appliances.jpeg',
     },
     {
-      'title': 'Books',
+      'title': 'Books, Toys',
       'image': 'assets/images/books.jpeg',
     },
     {
-      'title': 'Fashion',
-      'image': 'assets/images/fashion.jpeg',
+      'title': 'Essentials',
+      'image': 'assets/images/essentials.jpeg',
     },
+  ];
+
+  static const List<String> smallAdsImage = [
+    "https://m.media-amazon.com/images/I/11M5KkkmavL._SS70_.png",
+    "https://m.media-amazon.com/images/I/11iTpTDy6TL._SS70_.png",
+    "https://m.media-amazon.com/images/I/11dGLeeNRcL._SS70_.png",
+    "https://m.media-amazon.com/images/I/11kOjZtNhnL._SS70_.png",
+  ];
+
+  static const List<String> smallAdsTitle = [
+    "Amazon Pay",
+    "Recharge",
+    "Rewards",
+    "Pay Bills"
   ];
 }

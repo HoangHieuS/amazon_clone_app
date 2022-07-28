@@ -39,7 +39,7 @@ class AddressServices {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -68,13 +68,13 @@ class AddressServices {
         response: res,
         context: context,
         onSuccess: () {
-          SnackBarUtil.showSnackBar('Your order has been placed!');
+          showSnackBar(context, 'Your order has been placed!');
           UserModel user = userProvider.user.copyWith(cart: []);
           userProvider.setUserFromModel(user);
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 }

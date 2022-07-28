@@ -38,7 +38,7 @@ class HomeServices {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
     return productList;
   }
@@ -74,7 +74,7 @@ class HomeServices {
         },
       );
     } catch (e) {
-      SnackBarUtil.showSnackBar(e.toString());
+      showSnackBar(context, e.toString());
     }
     return product;
   }

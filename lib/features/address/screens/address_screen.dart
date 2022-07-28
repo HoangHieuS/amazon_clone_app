@@ -86,7 +86,7 @@ class _AddressScreenState extends State<AddressScreen> {
     } else if (addressFromProvider.isNotEmpty) {
       addressToBeUsed = addressFromProvider;
     } else {
-      SnackBarUtil.showSnackBar('ERROR');
+      showSnackBar(context, 'ERROR');
     }
   }
 
